@@ -1,0 +1,136 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+
+const entries = await getCollection('monthly');
+entries.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+// Group by year
+const byYear: Record<string, typeof entries> = {};
+for (const entry of entries) {
+  const year = entry.data.pubDate.getFullYear().toString();
+  if (!byYear[year]) byYear[year] = [];
+  byYear[year].push(entry);
+}
+const years = Object.keys(byYear).sort((a, b) => Number(b) - Number(a));
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <BaseHead title={`Archive — ${SITE_TITLE}`} description="所有月報的存檔。" />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <header class="page-header">
+        <span class="page-label">Archive</span>
+        <div class="header-rule"></div>
+      </header>
+
+      {years.map((year) => (
+        <section class="year-group">
+          <h2 class="year-heading">{year}</h2>
+          <ul class="entry-list">
+            {byYear[year].map((entry) => (
+              <li class="entry-item">
+                <a href={`${base}/${entry.id}`} class="entry-link">
+                  <span class="entry-month">
+                    {entry.data.pubDate.toLocaleDateString('zh-TW', { month: 'long' })}
+                  </span>
+                  <span class="entry-desc">{entry.data.description}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .page-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .page-label {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .header-rule {
+    border-top: 1px solid var(--ink);
+  }
+
+  .year-group {
+    margin-bottom: 2.5rem;
+  }
+
+  .year-heading {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--ink-light);
+    margin: 0 0 0.75rem;
+    text-transform: uppercase;
+  }
+
+  .entry-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .entry-item {
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 0;
+  }
+
+  .entry-link {
+    display: flex;
+    align-items: baseline;
+    gap: 1.25rem;
+    padding: 0.85rem 0;
+    text-decoration: none;
+    color: var(--ink);
+  }
+
+  .entry-link:hover {
+    opacity: 1;
+  }
+
+  .entry-link:hover .entry-month {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .entry-month {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1rem;
+    min-width: 5rem;
+    flex-shrink: 0;
+  }
+
+  .entry-desc {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    color: var(--ink-light);
+    line-height: 1.5;
+  }
+</style>

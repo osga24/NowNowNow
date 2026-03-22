@@ -1,0 +1,254 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  slug: string;
+  photo?: { src: ImageMetadata; alt?: string };
+  prevEntry?: { slug: string; title: string } | null;
+  nextEntry?: { slug: string; title: string } | null;
+}
+
+const { title, pubDate, photo, prevEntry, nextEntry } = Astro.props;
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<article class="report">
+  <header class="report-header">
+    <time class="report-date" datetime={pubDate.toISOString()}>
+      {pubDate.toLocaleDateString('zh-TW', { year: 'numeric', month: 'long' })}
+    </time>
+    <h1 class="report-title">{title}</h1>
+    <div class="report-rule"></div>
+  </header>
+
+  <div class="prose">
+    <slot />
+  </div>
+
+  {photo && (
+    <section class="photo-section">
+      <div class="section-heading-row">
+        <span class="section-label">Photo</span>
+        <div class="section-rule"></div>
+      </div>
+      <figure class="photo-item">
+        <Image
+          src={photo.src}
+          alt={photo.alt ?? ''}
+          class="photo-img"
+          widths={[360, 540]}
+          sizes="180px"
+        />
+        {photo.alt && <figcaption class="photo-caption">{photo.alt}</figcaption>}
+      </figure>
+    </section>
+  )}
+
+  {(prevEntry || nextEntry) && (
+    <nav class="report-nav">
+      <div class="rule"></div>
+      <div class="nav-inner">
+        {prevEntry ? (
+          <a href={`${base}/${prevEntry.slug}`} class="nav-link nav-prev">
+            <span class="nav-label">← 上個月</span>
+            <span class="nav-title">{prevEntry.title}</span>
+          </a>
+        ) : <span />}
+        {nextEntry ? (
+          <a href={`${base}/${nextEntry.slug}`} class="nav-link nav-next">
+            <span class="nav-label">下個月 →</span>
+            <span class="nav-title">{nextEntry.title}</span>
+          </a>
+        ) : <span />}
+      </div>
+    </nav>
+  )}
+</article>
+
+<style>
+  .report {
+    width: 100%;
+  }
+
+  .report-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .report-date {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 0.4rem;
+  }
+
+  .report-title {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.75rem;
+    line-height: 1.15;
+  }
+
+  .report-rule {
+    border-top: 1px solid var(--ink);
+  }
+
+  /* ── Prose ── */
+  .prose :global(h2) {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin: 2.25rem 0 0.5rem;
+  }
+
+  .prose :global(h2 + *) {
+    margin-top: 0;
+  }
+
+  .prose :global(h2)::after {
+    content: '';
+    display: block;
+    border-top: 1px solid var(--ink);
+    margin-top: 0.5rem;
+  }
+
+  .prose :global(p) {
+    margin: 0 0 1.1rem;
+    color: var(--ink);
+  }
+
+  .prose :global(ul),
+  .prose :global(ol) {
+    padding-left: 1.25rem;
+    margin: 0 0 1.1rem;
+  }
+
+  .prose :global(li) {
+    margin-bottom: 0.35rem;
+  }
+
+  .prose :global(strong) {
+    font-weight: 700;
+  }
+
+  .prose :global(em) {
+    font-style: italic;
+  }
+
+  .prose :global(blockquote) {
+    border-left: 2px solid var(--ink);
+    margin: 1.5rem 0;
+    padding: 0.1rem 0 0.1rem 1.1rem;
+    font-style: italic;
+    color: var(--ink-light);
+  }
+
+  .prose :global(a) {
+    color: var(--ink);
+  }
+
+  /* ── Photo ── */
+  .photo-section {
+    margin-top: 2.75rem;
+  }
+
+  .section-heading-row {
+    margin-bottom: 1.25rem;
+  }
+
+  .section-label {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-rule {
+    border-top: 1px solid var(--ink);
+  }
+
+  .photo-item {
+    margin: 0 auto;
+    width: min(320px, 100%);
+  }
+
+  .photo-img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .photo-caption {
+    margin-top: 0.4rem;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    color: var(--ink-light);
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  /* ── Navigation ── */
+  .report-nav {
+    margin-top: 3rem;
+  }
+
+  .rule {
+    border-top: 1px solid var(--rule);
+    margin-bottom: 1.25rem;
+  }
+
+  .nav-inner {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .nav-link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    text-decoration: none;
+    max-width: 45%;
+  }
+
+  .nav-next {
+    text-align: right;
+    margin-left: auto;
+  }
+
+  .nav-label {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+
+  .nav-title {
+    font-size: 0.95rem;
+    color: var(--ink);
+    font-style: italic;
+  }
+
+  .nav-link:hover .nav-title {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+</style>
