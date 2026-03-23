@@ -8,13 +8,13 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <div class="rule-top"></div>
     <div class="title-row">
       <a href={base} class="site-title">{SITE_TITLE}</a>
-      <nav class="sub-row">
-        <a href={base} class="nav-item">/now</a>
-        <span class="nav-sep">·</span>
-        <a href={`${base}/archive`} class="nav-item">archive</a>
-      </nav>
     </div>
-    <div class="rule-bottom"></div>
+    <div class="rule-top"></div>
+    <nav class="sub-row">
+      <a href={base} class="nav-item">/now</a>
+      <span class="nav-sep">·</span>
+      <a href={`${base}/archive`} class="nav-item">archive</a>
+    </nav>
   </div>
 </header>
 
@@ -33,9 +33,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
   .title-row {
     display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    padding: 0.4rem 0;
+    justify-content: center;
+    padding: 0.5rem 0;
   }
 
   .site-title {
@@ -46,21 +45,25 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     text-decoration: none;
     color: var(--ink);
     line-height: 1;
+	padding: 1rem 0;
   }
 
   .site-title:hover {
     opacity: 0.7;
   }
 
+
   .sub-row {
     display: flex;
+    justify-content: center;
     align-items: center;
     gap: 0.5rem;
+    padding: 0.55rem 0 1rem;
   }
 
   .nav-item {
     font-family: var(--font-sans);
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     font-weight: 400;
     letter-spacing: 0.18em;
     text-transform: lowercase;
@@ -75,11 +78,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
   .nav-sep {
     font-family: var(--font-sans);
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     color: var(--rule);
   }
 
-  .rule-bottom {
-    border-top: 1px solid var(--rule);
-  }
 </style>

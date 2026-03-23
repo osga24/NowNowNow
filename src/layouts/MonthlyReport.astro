@@ -19,9 +19,6 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 <article class="report">
   <header class="report-header">
-    <time class="report-date" datetime={pubDate.toISOString()}>
-      {pubDate.toLocaleDateString('zh-TW', { year: 'numeric', month: 'long' })}
-    </time>
     <h1 class="report-title">{title}</h1>
     <div class="report-rule"></div>
   </header>
