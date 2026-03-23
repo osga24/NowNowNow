@@ -5,20 +5,20 @@
   --rule: #d4d0c8;
   --rule-heavy: #111111;
   --accent: #111111;
-  --font-serif: Georgia, 'Times New Roman', Times, serif;
-  --font-sans: 'Atkinson', 'Helvetica Neue', Arial, sans-serif;
+  --font-serif: Georgia, "Times New Roman", Times, serif;
+  --font-sans: "Atkinson", "Helvetica Neue", Arial, sans-serif;
 }
 
 @font-face {
-  font-family: 'Atkinson';
-  src: url('/now/fonts/atkinson-regular.woff') format('woff');
+  font-family: "Atkinson";
+  src: url("/now/fonts/atkinson-regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'Atkinson';
-  src: url('/now/fonts/atkinson-bold.woff') format('woff');
+  font-family: "Atkinson";
+  src: url("/now/fonts/atkinson-bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -52,7 +52,12 @@ main {
   padding: 0 1.5rem 4rem;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-serif);
   font-weight: 700;
   line-height: 1.2;
@@ -73,11 +78,13 @@ a:hover {
   opacity: 0.6;
 }
 
-strong, b {
-  font-weight: 700;
+strong,
+b {
+  font-weight: 900;
 }
 
-ul, ol {
+ul,
+ol {
   padding-left: 1.5rem;
   margin: 0 0 1.25rem;
 }
@@ -101,7 +108,7 @@ blockquote {
 }
 
 code {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   font-size: 0.875em;
   background: #e8e6e1;
   padding: 0.1em 0.35em;
@@ -119,7 +126,7 @@ pre {
 
 pre > code {
   all: unset;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   font-size: 0.875em;
 }
 

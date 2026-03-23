@@ -3,7 +3,7 @@ import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
 const monthly = defineCollection({
-  loader: glob({ base: './src/content/monthly', pattern: '**/*.{md,mdx}' }),
+  loader: glob({ base: './src/content', pattern: '[0-9][0-9][0-9][0-9]/*.{md,mdx}' }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),

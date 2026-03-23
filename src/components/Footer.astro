@@ -1,20 +1,16 @@
 ---
 const today = new Date();
-const updated = today.toLocaleDateString('en-US', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-});
 ---
 
 <footer>
   <div class="rule"></div>
   <div class="inner">
-    <span class="label">Last updated</span>
-    <span class="date">{updated}</span>
-    <span class="dot">·</span>
     <a href="https://nownownow.com/about" target="_blank" rel="noopener noreferrer" class="what">
       What is a /now page?
+    </a>
+    <span class="dot">·</span>
+    <a href="https://osga.dev" target="_blank" rel="noopener noreferrer" class="what">
+      More About OsGa.dev
     </a>
   </div>
 </footer>
@@ -22,13 +18,14 @@ const updated = today.toLocaleDateString('en-US', {
 <style>
   footer {
     width: 100%;
-    max-width: 660px;
+    max-width: 41.25rem;
     margin: 0 auto;
     padding: 0 1.5rem 3rem;
+    box-sizing: border-box;
   }
 
   .rule {
-    border-top: 1px solid var(--ink);
+    border-top: 0.0625rem solid var(--ink);
     margin-bottom: 1.25rem;
   }
 
@@ -36,6 +33,7 @@ const updated = today.toLocaleDateString('en-US', {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
     gap: 0.4rem 0.6rem;
     font-family: var(--font-sans);
     font-size: 0.78rem;
@@ -43,25 +41,14 @@ const updated = today.toLocaleDateString('en-US', {
     color: var(--ink-light);
   }
 
-  .label {
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-size: 0.7rem;
-  }
 
-  .date {
-    color: var(--ink);
-  }
-
-  .dot {
-    color: var(--rule);
-  }
 
   .what {
     color: var(--ink-light);
     text-decoration: underline;
-    text-underline-offset: 2px;
+    text-underline-offset: 0.125rem;
   }
+
   .what:hover {
     color: var(--ink);
     opacity: 1;

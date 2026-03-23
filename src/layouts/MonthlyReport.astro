@@ -32,10 +32,6 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
   {photo && (
     <section class="photo-section">
-      <div class="section-heading-row">
-        <span class="section-label">Photo</span>
-        <div class="section-rule"></div>
-      </div>
       <figure class="photo-item">
         <Image
           src={photo.src}
@@ -138,10 +134,6 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     margin-bottom: 0.35rem;
   }
 
-  .prose :global(strong) {
-    font-weight: 700;
-  }
-
   .prose :global(em) {
     font-style: italic;
   }
@@ -161,25 +153,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   /* ── Photo ── */
   .photo-section {
     margin-top: 2.75rem;
-  }
-
-  .section-heading-row {
-    margin-bottom: 1.25rem;
-  }
-
-  .section-label {
-    display: block;
-    font-family: var(--font-sans);
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--ink-light);
-    margin-bottom: 0.5rem;
-  }
-
-  .section-rule {
     border-top: 1px solid var(--ink);
+    padding-top: 1.5rem;
   }
 
   .photo-item {
