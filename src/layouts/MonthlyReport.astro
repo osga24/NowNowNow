@@ -34,8 +34,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           src={photo.src}
           alt={photo.alt ?? ''}
           class="photo-img"
-          widths={[360, 540]}
-          sizes="180px"
+          widths={[540, 800]}
+          sizes="(min-width: 640px) 480px, 100vw"
         />
         {photo.alt && <figcaption class="photo-caption">{photo.alt}</figcaption>}
       </figure>
@@ -72,26 +72,16 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     margin-bottom: 2.5rem;
   }
 
-  .report-date {
-    display: block;
-    font-family: var(--font-sans);
-    font-size: 0.7rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--ink-light);
-    margin-bottom: 0.4rem;
-  }
-
   .report-title {
     font-size: clamp(1.6rem, 4vw, 2.2rem);
     font-weight: 700;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.02rem;
     margin: 0 0 0.75rem;
     line-height: 1.15;
   }
 
   .report-rule {
-    border-top: 1px solid var(--ink);
+    border-top: 0.0625rem solid var(--ink);
   }
 
   /* ── Prose ── */
@@ -99,7 +89,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     font-family: var(--font-sans);
     font-size: 0.7rem;
     font-weight: 700;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.18rem;
     text-transform: uppercase;
     color: var(--ink-light);
     margin: 2.25rem 0 0.5rem;
@@ -112,7 +102,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   .prose :global(h6)::after {
     content: '';
     display: block;
-    border-top: 1px solid var(--ink);
+    border-top: 0.0625rem solid var(--ink);
     margin-top: 0.5rem;
   }
 
@@ -136,7 +126,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   }
 
   .prose :global(blockquote) {
-    border-left: 2px solid var(--ink);
+    border-left: 0.125rem solid var(--ink);
     margin: 1.5rem 0;
     padding: 0.1rem 0 0.1rem 1.1rem;
     font-style: italic;
@@ -150,13 +140,13 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   /* ── Photo ── */
   .photo-section {
     margin-top: 2.75rem;
-    border-top: 1px solid var(--ink);
+    border-top: 0.0625rem solid var(--ink);
     padding-top: 1.5rem;
   }
 
   .photo-item {
     margin: 0 auto;
-    width: min(320px, 100%);
+    width: min(30rem, 100%);
   }
 
   .photo-img {
@@ -165,6 +155,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     aspect-ratio: 9 / 16;
     height: auto;
     object-fit: cover;
+    border-radius: 0.75rem;
   }
 
   .photo-caption {
@@ -182,7 +173,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   }
 
   .rule {
-    border-top: 1px solid var(--rule);
+    border-top: 0.0625rem solid var(--rule);
     margin-bottom: 1.25rem;
   }
 
@@ -208,7 +199,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   .nav-label {
     font-family: var(--font-sans);
     font-size: 0.7rem;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.1rem;
     text-transform: uppercase;
     color: var(--ink-light);
   }
@@ -221,6 +212,6 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
   .nav-link:hover .nav-title {
     text-decoration: underline;
-    text-underline-offset: 2px;
+    text-underline-offset: 0.125rem;
   }
 </style>
