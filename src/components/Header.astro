@@ -1,85 +1,93 @@
 ---
-import { SITE_TITLE } from '../consts';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <header>
-  <div class="masthead">
-    <div class="rule-top"></div>
-    <div class="title-row">
-      <a href={base} class="site-title">{SITE_TITLE}</a>
-    </div>
-    <div class="rule-top"></div>
-    <nav class="sub-row">
-      <a href={base} class="nav-item">/now</a>
-      <span class="nav-sep">·</span>
-      <a href={`${base}/archive`} class="nav-item">archive</a>
-    </nav>
-  </div>
+	<div class="masthead">
+		<div class="rule-top"></div>
+		<div class="title-row">
+			<h1 class="site-title"><a href="https://osga.dev">OsGa.dev</a><a href="https://nownownow.com/about" class="title-now">/now</a></h1>
+		</div>
+		<div class="rule-top"></div>
+		<nav class="sub-row">
+			<a href={base} class="nav-item">/now</a>
+			<span class="nav-sep">·</span>
+			<a href={`${base}/archive`} class="nav-item">archive</a>
+		</nav>
+	</div>
 </header>
 
 <style>
-  header {
-    width: 100%;
-    max-width: 660px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem 0;
-  }
+header {
+	width: 100%;
+	max-width: 660px;
+	margin: 0 auto;
+	padding: 2rem 1.5rem 0;
+}
 
-  .rule-top {
-    border-top: 3px solid var(--ink);
-    margin-bottom: 0.5rem;
-  }
 
-  .title-row {
-    display: flex;
-    justify-content: center;
-    padding: 0.5rem 0;
-  }
+.rule-top {
+	border-top: 3px solid var(--ink);
+	margin-bottom: 0.5rem;
+}
 
-  .site-title {
-    font-family: var(--font-serif);
-    font-size: clamp(2rem, 6vw, 3.2rem);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    text-decoration: none;
-    color: var(--ink);
-    line-height: 1;
+.title-row {
+	display: flex;
+	justify-content: center;
+	padding: 0.5rem 0;
+}
+
+.site-title {
+	font-family: var(--font-serif);
+	font-size: clamp(2rem, 6vw, 3.2rem);
+	font-weight: 700;
+	letter-spacing: -0.02em;
+	text-decoration: none;
+	color: var(--ink);
+	line-height: 1;
 	padding: 1rem 0;
-  }
+}
 
-  .site-title:hover {
-    opacity: 0.7;
-  }
+.site-title a{
+	text-decoration: none;
+}
+
+.site-title:hover {
+	opacity: 0.7;
+}
+
+.site-title a.title-now {
+	color: #900;
+}
 
 
-  .sub-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.55rem 0 1rem;
-  }
+.sub-row {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.55rem 0 1rem;
+}
 
-  .nav-item {
-    font-family: var(--font-sans);
-    font-size: 0.8rem;
-    font-weight: 400;
-    letter-spacing: 0.18em;
-    text-transform: lowercase;
-    color: var(--ink-light);
-    text-decoration: none;
-  }
+.nav-item {
+	font-family: var(--font-sans);
+	font-size: 0.8rem;
+	font-weight: 400;
+	letter-spacing: 0.18em;
+	text-transform: lowercase;
+	color: var(--ink-light);
+	text-decoration: none;
+}
 
-  .nav-item:hover {
-    color: var(--ink);
-    opacity: 1;
-  }
+.nav-item:hover {
+	color: var(--ink);
+	opacity: 1;
+}
 
-  .nav-sep {
-    font-family: var(--font-sans);
-    font-size: 0.8rem;
-    color: var(--rule);
-  }
+.nav-sep {
+	font-family: var(--font-sans);
+	font-size: 0.8rem;
+	color: var(--rule);
+}
 
 </style>
