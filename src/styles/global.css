@@ -1,3 +1,5 @@
+@import url("https://font.emtech.cc/css/ChironSungHK");
+
 :root {
   --ink: #111111;
   --ink-light: #555555;
@@ -5,7 +7,7 @@
   --rule: #d4d0c8;
   --rule-heavy: #111111;
   --accent: #111111;
-  --font-serif: Georgia, "Times New Roman", Times, serif;
+  --font-serif: "ChironSungHK", Georgia, "Times New Roman", Times, serif;
   --font-sans: "Atkinson", "Helvetica Neue", Arial, sans-serif;
 }
 
