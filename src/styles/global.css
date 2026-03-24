@@ -103,10 +103,56 @@ hr {
 
 blockquote {
   border-left: 3px solid var(--ink);
+  height: 2.5rem;
   margin: 1.5rem 0;
-  padding: 0.25rem 0 0.25rem 1.25rem;
-  font-style: italic;
+  padding: 0.25rem 0 0.25rem;
   color: var(--ink-light);
+  font-style: italic;
+}
+
+/* ── Prose ── */
+.prose h6 {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18rem;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin: 2.25rem 0 0.5rem;
+}
+
+.prose h6 + * {
+  margin-top: 0;
+}
+
+.prose h6::after {
+  content: "";
+  display: block;
+  border-top: 0.0625rem solid var(--ink);
+  margin-top: 0.5rem;
+}
+
+.prose p {
+  margin: 0 0 1.1rem;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.25rem;
+  margin: 0 0 1.1rem;
+}
+
+.prose li {
+  margin-bottom: 0.35rem;
+}
+
+.prose em {
+  font-style: italic;
+}
+
+.prose blockquote {
+  border-left: 0.125rem solid var(--ink);
+  padding: 0.1rem 0 0.1rem 1.1rem;
 }
 
 code {
