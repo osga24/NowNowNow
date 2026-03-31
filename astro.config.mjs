@@ -8,6 +8,5 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
   output: "static",
   site: "https://osga.dev",
-  base: "/now",
   integrations: [mdx(), sitemap()],
 });
